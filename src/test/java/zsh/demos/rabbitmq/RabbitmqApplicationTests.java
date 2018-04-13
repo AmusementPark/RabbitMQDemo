@@ -18,8 +18,11 @@ public class RabbitmqApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		rbqProducer.produce();
-		zccProducer.produce();
+		
+		for (int i=0; i< 100; i++) {
+			rbqProducer.produce(String.valueOf(i));
+//			zccProducer.produce();
+		}
 	}
 
 }

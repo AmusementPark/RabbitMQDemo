@@ -12,8 +12,8 @@ public class ZCCProducer {
 	@Qualifier("Q2Tpl")
     private RabbitTemplate rabbitTemplate;
 
-    public void produce() {
-    		String context = "Hello, ZCCProducer!";
+	public void produce(String content) {
+        String context = "Hello, ZCCProducer! - "+content;
         rabbitTemplate.convertAndSend(context);
     }
 }

@@ -43,12 +43,18 @@ public class RabbitMQConf {
 	}
 
 	// 绑定队列到交换机
+	// ----------------------------------------------------------------------------
 	@Bean
-	public Binding bindingQ1() {
+	public Binding bindingQ1R1() {
 		return BindingBuilder.bind(q1).to(topicExchange).with(RoutingKeyQ1);
 	}
 	@Bean
-	public Binding bindingQ2() {
+	public Binding bindingQ2R1() {
+		return BindingBuilder.bind(q2).to(topicExchange).with(RoutingKeyQ1);
+	}
+	// ----------------------------------------------------------------------------
+	@Bean
+	public Binding bindingQ2R2() {
 		return BindingBuilder.bind(q2).to(topicExchange).with(RoutingKeyQ2);
 	}
 	
@@ -73,6 +79,7 @@ public class RabbitMQConf {
         template.setMandatory(true);
         return template;
     }
+	
 
 //	@Bean
 //	public ConnectionFactory connectionFactory() {
@@ -104,7 +111,7 @@ public class RabbitMQConf {
 	public SimpleMessageListenerContainer containerRBQ(ConnectionFactory connectionFactory) {
 		SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
 		container.setConnectionFactory(connectionFactory);
-		container.setQueueNames(Q1);
+		container.setQueueNames(Q1, Q2);		// 消费两个队列，直连交换机模型
 		container.setMessageListener(rbqConsumer);
 		return container;
 	}

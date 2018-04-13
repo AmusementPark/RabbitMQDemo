@@ -12,8 +12,8 @@ public class RBQProducer {
 	@Qualifier("Q1Tpl")
     private RabbitTemplate rabbitTemplate;
 
-    public void produce() {
-        String context = "Hello, RBQProducer!";
+    public void produce(String content) {
+        String context = "Hello, RBQProducer! - "+content;
         rabbitTemplate.convertAndSend(context);
     }
 }
