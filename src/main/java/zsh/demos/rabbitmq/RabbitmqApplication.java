@@ -21,6 +21,5 @@ public class RabbitmqApplication {
 	
 	public static void main(String[] args) {
 		APPCTX = SpringApplication.run(RabbitmqApplication.class, args);
-//		System.out.println(Thread.currentThread().getId());
 	}
 }

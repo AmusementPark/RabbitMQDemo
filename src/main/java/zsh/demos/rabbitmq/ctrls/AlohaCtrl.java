@@ -18,7 +18,7 @@ public class AlohaCtrl {
 	@GetMapping("/")
 	public String aloha(@RequestParam(value="ipaddr", required=false) String ipaddr) {
 		rbqProducer.produce("HI");
-		zccProducer.produce("HI");
+//		zccProducer.produce("HI");
 		return "Aloha!";
 	}
 
